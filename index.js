@@ -26,6 +26,11 @@ app.use("/products", products);
 app.use("/sale", sale);
 app.use("/order", order);
 
+app.use((err, req, res, next) => {
+	console.error(err.stack);
+	res.status(500).send("Something went wrong!");
+});
+
 app.use(express.json());
 
 const start = async () => {
